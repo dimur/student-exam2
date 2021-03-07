@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    environment {
+        registry = "dimur/exam2"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -19,6 +23,18 @@ pipeline {
                     coverage report
                     deactivate
                     """
+                }
+            }
+        }
+        stage('Build docker image') {
+            steps {
+                dockerImage = docker.build registry + ":app$BUILD_NUMBER"
+            }
+        }
+        stage('Push docker image') {
+            steps {
+                docker.withRegistry('', registryCredential) {
+                    dockerImage.push()
                 }
             }
         }
