@@ -1,7 +1,7 @@
 FROM alpine:latest
 WORKDIR /opt/student-exam2
-RUN apk add git python3 \
-    && git clone https://github.com/dimur/student-exam2.git . \
+COPY ./* .
+RUN apk add python3 \
     && python3 -m venv venv \
     && . venv/bin/activate \
     && pip install -e .
