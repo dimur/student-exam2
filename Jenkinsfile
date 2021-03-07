@@ -28,13 +28,17 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                dockerImage = docker.build registry + ":app$BUILD_NUMBER"
+                script {
+                    dockerImage = docker.build registry + ":app$BUILD_NUMBER"
+                }
             }
         }
         stage('Push docker image') {
             steps {
-                docker.withRegistry('', registryCredential) {
-                    dockerImage.push()
+                script {
+                    docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
