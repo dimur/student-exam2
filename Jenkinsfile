@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = "dimur/exam2"
+        registry = "dmurzin/exam2"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
@@ -30,7 +30,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":app$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":app"
                 }
             }
         }
