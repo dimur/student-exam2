@@ -1,6 +1,6 @@
 FROM alpine:latest
 WORKDIR /opt/student-exam2
-COPY ./* .
+COPY ./* ./
 RUN apk add python3 \
     && python3 -m venv venv \
     && . venv/bin/activate \
