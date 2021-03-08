@@ -43,5 +43,12 @@ pipeline {
                 }
             }
         }
+        stage('Clean up') {
+            steps {
+                script {
+                    sh "docker rmi $registry:app"
+                }
+            }
+        }
     }
 }
