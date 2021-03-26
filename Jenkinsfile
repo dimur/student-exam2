@@ -1,5 +1,5 @@
 pipeline {
-    node agent1
+    agent any
     environment {
         registry = "dmurzin/exam2"
         registryCredential = 'dockerhub'
